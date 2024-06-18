@@ -2,6 +2,7 @@ package main
 
 // go get github.com/gorilla/mux -> para conseguir utilizar as rotas.
 import (
+	"api/API/config"
 	"api/API/src/router"
 	"fmt"
 	"log"
@@ -9,9 +10,10 @@ import (
 )
 
 func main(){
-	fmt.Println("Rodando API!!")
+	config.Carregar()
 
+	fmt.Println("Rodando API!!")
 	r := router.Gerar()
 
-	log.Fatal(http.ListenAndServe(":5000", r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 }
